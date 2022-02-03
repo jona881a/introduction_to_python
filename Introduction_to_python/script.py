@@ -6,7 +6,6 @@ def checkDrinkingAge(age):
         return True
     return False
     
-
 a = "Hello world 33"
 age = input("Insert a number: ")
 arr = ["Yoda","Darth Vader","Luke"]
