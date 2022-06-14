@@ -1,18 +1,18 @@
 class Point(object):
 
     def __init__(self, *coordinates):
-        if len(coordinates) == 1:
+        if len(coordinates) == 1 and coordinates[0]:
             self.x = coordinates[0]
+            self.y = 0
         elif len(coordinates) == 2:
             self.x = coordinates[0]
             self.y = coordinates[1]
+        else:
+            self.x = 0
+            self.y = 0
     
     def getCoordinates(self):
-        if self.x == None:
-            return (self.x)
-        elif self.y == None:
-            return (self.y)
-        elif self.y == None and self.x == None:
-            return "no coordinates found"
-        else:
-            return tuple((self.x, self.y))
+        return tuple((self.x, self.y))
+
+    def __str__(self):
+        return "x: {}, y: {}".format(self.x,self.y)

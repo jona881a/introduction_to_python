@@ -9,3 +9,5 @@ class Car(object):
 
     def __str__(self):
         return self.make + self.model + self.type
+         
+    
