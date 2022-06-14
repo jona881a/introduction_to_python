@@ -1,4 +1,4 @@
-class Car:
+class Car(object):
 
     def __init__(self, make, model, year, type, price):
         self.make = make
@@ -7,5 +7,5 @@ class Car:
         self.type = type
         self.price = price
 
-    def __repr__(self):
-        return f'Make: {self.make}, Model: {self.model}, Car type: {self.type}'
+    def __str__(self):
+        return self.make + self.model + self.type
