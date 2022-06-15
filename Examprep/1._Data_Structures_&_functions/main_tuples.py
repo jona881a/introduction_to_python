@@ -15,8 +15,12 @@ for point in list_of_points:
     print(point)
 
 print("Is Point.getCoordinates() instance of tuple: {} ".format(isinstance(list_of_points[0].getCoordinates(),tuple)))
+print("Is Point instance of tuple: {}".format(list_of_points[1]))
 
 #Sorting a list of tuples
 sorted(list_of_points, key=sortCoordinates)
 
+list_of_points.sort()
 
+for point in list_of_points:
+    print(point)
