@@ -10,4 +10,6 @@ class Car(object):
     def __str__(self):
         return self.make + self.model + self.type
          
+    def __repr__(self):
+        return self.__dict__
     

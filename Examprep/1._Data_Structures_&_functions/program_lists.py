@@ -1,6 +1,6 @@
-from this import d
 from car import Car;
-import datetime;
+import datetime, csv;
+from datastructure_tools import find_same_names
 
 def sortByAttributeMake(car):
   return car.make
@@ -15,7 +15,10 @@ dealership = [
 for i in range(len(dealership)):
   print(dealership[i].__dict__)
 
-dealership.sort()
+try:
+  dealership.sort()
+except TypeError:
+  print("can't compare cars")
 
 print("\nSorting using .sort()")
 print([car.__dict__ for car in dealership])
@@ -24,16 +27,21 @@ print("\nSorting with sorted by make")
 sortedDealership = sorted(dealership, key=sortByAttributeMake)
 print([car.make for car in sortedDealership])
 
-print("\n Inline sorted key: ")
+print("\nLambda sorted key: ")
 sortedDealership = sorted(dealership, key=lambda car: car.price)
 print([(car.make, car.price) for car in sortedDealership])
-"""
-print("Purchase a new Car")
-print("\n Searching for at specific value: ")
-input = input("What would you like to see? ")
 
-while i < len(dealership):
-  if dealership[i]
-else:
-  print("\n Sorry but i couldn't find anything that matched your request")
-"""
+with open("names.csv",'r') as file:
+  csvreader = csv.reader(file)
+
+  headers = next(csvreader) #Headers er ligegyldige her
+
+  rows = [row for row in csvreader]
+  names = []
+
+  for col in rows:
+    names.append(col[headers.index("first_name")])
+  
+  print(find_same_names(names))
+  #flatten_matrix = [row for sublist in csvreader for row in sublist]
+  #print(flatten_matrix)
