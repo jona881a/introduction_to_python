@@ -1,6 +1,6 @@
 from car import Car;
 import datetime, csv;
-from datastructure_tools import find_same_names
+from datastructure_tools import *
 
 def sortByAttributeMake(car):
   return car.make
@@ -27,21 +27,23 @@ print("\nSorting with sorted by make")
 sortedDealership = sorted(dealership, key=sortByAttributeMake)
 print([car.make for car in sortedDealership])
 
-print("\nLambda sorted key: ")
-sortedDealership = sorted(dealership, key=lambda car: car.price)
-print([(car.make, car.price) for car in sortedDealership])
+print("\nSorted with Lambda for price ")
+sortedDealership = sorted(dealership, key=lambda car: car.price, reverse=True)
+print([(car.make, car.model ,car.price) for car in sortedDealership])
 
-with open("names.csv",'r') as file:
-  csvreader = csv.reader(file)
 
-  headers = next(csvreader) #Headers er ligegyldige her
+print("\nFinding how many occurences of Names in names.csv")
+print(find_occurences_of_attribute("names.csv", "first_name"))
 
-  rows = [row for row in csvreader]
-  names = []
+print("\nWith cardata.csv and car_make as attribute")
+car_make_dict = find_occurences_of_attribute("../testdata/cardata.csv", "car_make")
 
-  for col in rows:
-    names.append(col[headers.index("first_name")])
-  
-  print(find_same_names(names))
-  #flatten_matrix = [row for sublist in csvreader for row in sublist]
-  #print(flatten_matrix)
+print("\nSorted after highest count")
+sorted_dict = sorted(car_make_dict.items(), key=lambda item: item[1], reverse=True)
+print(sorted_dict)
+
+print("\nFinding the make with the most cars represented")
+print(max_occurence(car_make_dict))
+
+#flatten_matrix = [row for sublist in csvreader for row in sublist]
+#print(flatten_matrix)

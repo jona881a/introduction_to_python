@@ -1,5 +1,4 @@
 import functools
-from multiprocessing.connection import wait
 import time
 
 def performance_timer(func):
@@ -20,7 +19,8 @@ def do_n_times(n):
   def decorator_do_n_times(func):
     @functools.wraps(func)
     def wrapper_do_n_times(*args, **kwargs):
-      for _ in range(n):
+      for i in range(n):
+        print(f'Doing it {i} time')
         value = func(*args, **kwargs)
       return value
     return wrapper_do_n_times
@@ -28,12 +28,3 @@ def do_n_times(n):
 
 def authentication_required(func):
   pass
-
-def count_time_waited(func):
-  @functools.wraps(func)
-  def wrapper_count_calls(*args, **kwargs):
-    wrapper_count_calls.num_calls += 1
-    print(f"Call {wrapper_count_calls.num_calls} of {func.__name__!r}")
-    return func(*args, **kwargs)
-  wrapper_count_calls.num_calls = 0
-  return wrapper_count_calls

@@ -19,15 +19,33 @@ def create_datastructure_from_csv(path, type, listFor):
 
   return datastructure
 
-#Skal laves generel til alle slags kolonner i csv filer
-def find_same_names(list):
-  namedict = {}
+def find_occurences_of_attribute(path, attribute):
+  with open(path,'r') as file:
+    csvreader = csv.reader(file)
 
-  for name in list:
-    count = 0
-    for othername in list:
-      if name.lower() == othername.lower():
-        count += 1
-        namedict[repr(name)] = count
+    headers = next(csvreader) 
+    rows = [row for row in csvreader]
+    cells = []
 
-  return namedict
+  for col in rows:
+    cells.append(col[headers.index(attribute)])
+
+  dict = {}
+
+  for attr in cells:
+    count = cells.count(attr)
+    dict[attr] = count
+
+  return dict
+
+def max_occurence(dict):
+  max = None
+
+  for item in dict.items():
+    if max is None:
+      max = item
+    elif max[1] < item[1]:
+      max = item
+
+  return max
+    

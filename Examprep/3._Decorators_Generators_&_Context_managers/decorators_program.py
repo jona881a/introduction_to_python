@@ -1,5 +1,6 @@
 from decorators import *
 
+@do_n_times(n = 4)
 @performance_timer
 def waste_some_time(num_times):
     for _ in range(num_times):
